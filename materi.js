@@ -1,53 +1,77 @@
-// Variabel
+// OBJECT
 
-// let
-let name = 'Alan Sadewa'; // string
+const blog = {
+  title: 'Tips Mengatasi Error saat Ngoding ',
+  content: 'IT enthusiast pasti sudah tidak asing lagi dengan kata “Error”.',
+  image: 'error.png',
+  year: 2020,
+};
 
-let address = 'Wonosobo';
-address = 'Kuningan';
+// console.log(blog.year);
+// console.log(blog['content']);
 
-let age = 21; // number / integer
+blog.image = 'error-ngoding.jpg';
 
-let a = '10';
-let b = 3;
+blog.title = 'Tips Mengatasi Error saat Ngoding Javascript';
 
-let c = a + b;
+blog.author = 'Ivan Setiawan';
 
-// console.log(typeof a);
+delete blog.content;
 
-// const
-const kelas = 'FullStack';
-// kelas = 'DevOps';
+// console.log(blog);
 
-const Company = 'Dumbways Indonesia';
+// blog = 'Selamat Pagi';
 
-// var
+// ARRAY
 
-// Function ----------------------------
-function perkalian(x, y) {
-  const bil1 = x;
-  const bil2 = y;
+let person1 = 'Dwiki';
+let person2 = 'Husni';
+let person3 = 'Muzhaffar';
 
-  let result = bil1 * bil2;
+let persons = ['Dwiki', 'Husni', 'Muzhaffar'];
 
-  //   console.log(bil1 + ' * ' + bil2 + ' = ' + result);
-  console.log(`${bil1} * ${bil2} = ${result}`);
-}
+persons.push('Erika');
+// persons.unshift('Erika');
 
-function penjumlahan(x, y) {
-  const bil1 = x;
-  const bil2 = y;
+persons.splice(1, 1);
 
-  let result = bil1 + bil2;
+persons[0] = 'Jemmy';
 
-  //   console.log(bil1 + ' * ' + bil2 + ' = ' + result);
-  console.log(`${bil1} + ${bil2} = ${result}`);
-}
+// console.log(persons);
 
-// penjumlahan(90, 4);
-// perkalian(90, 4);
+// ARRAY OF OBJECT
 
-const hasil = 9.3 + 2;
+let blogs = [
+  {
+    title: 'Tips Mengatasi Error saat Ngoding',
+    content: 'IT enthusiast pasti sudah tidak asing lagi dengan kata “Error”.',
+    image: 'error.png',
+    year: 2020,
+  },
+  {
+    title: 'Cara Mudah Fetch JSON Dari API',
+    content: 'Kamu bisa dapat menggunakan fetch untuk melakukan fetching',
+    image: 'json.png',
+    year: 2017,
+  },
+];
 
-console.log(hasil);
-console.log(typeof hasil);
+blogs.push({
+  title: '5 Situs Populer Belajar Coding',
+  content: 'Coding adalah kegiatan menulis barisan kode',
+  image: 'coding.png',
+  year: 2019,
+});
+
+// console.log(blogs);
+// console.log(blogs.length);
+
+// for (let i = 0; i < blogs.length; i++) {
+//   console.log(blogs[i].content);
+//   console.log(blogs[i].year);
+// }
+
+blogs.forEach((data) => {
+  console.log(data.content);
+  console.log(data.year);
+});
