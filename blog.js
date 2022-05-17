@@ -1,3 +1,18 @@
+const month = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 let blogs = [];
 
 function addBlog() {
@@ -41,9 +56,12 @@ function renderBlogs() {
         >
       </h1>
       <div class="detail-blog-content">
-      ${data.postedAt} | ${data.author}
+      ${getFullTime(data.postedAt)} | ${data.author}
       </div>
       <p>${data.content}</p>
+      <div style="text-align: right; color: grey">${getDistanceTime(
+        data.postedAt
+      )}</div>
     </div>
   </div>`;
   });
@@ -71,3 +89,73 @@ function renderBlogs() {
   // </div>`;
   //   }
 }
+
+function getFullTime(time) {
+  const date = time.getDate();
+  const monthIndex = time.getMonth();
+  const year = time.getFullYear();
+  let hour = time.getHours();
+  let minute = time.getMinutes();
+
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+
+  if (minute < 10) {
+    minute = '0' + minute;
+  }
+
+  const fullTime = `${date} ${month[monthIndex]} ${year} ${hour}:${minute} WIB`;
+
+  return fullTime;
+}
+
+function getDistanceTime(time) {
+  const timeNow = new Date();
+  const timePost = new Date(time);
+
+  const distance = timeNow - timePost;
+
+  const milisecondsInDay = 1000 * 60 * 60 * 24;
+  const distanceDay = Math.floor(distance / milisecondsInDay);
+
+  if (distanceDay >= 1) {
+    return `${distanceDay} day ago`;
+  } else {
+    const milisecondsInHour = 1000 * 60 * 60;
+    const distanceHour = Math.floor(distance / milisecondsInHour);
+
+    if (distanceHour >= 1) {
+      return `${distanceHour} hours ago`;
+    } else {
+      const milisecondsInMinute = 1000 * 60;
+      const distanceMinute = Math.floor(distance / milisecondsInMinute);
+
+      if (distanceMinute >= 1) {
+        return `${distanceMinute} minutes ago`;
+      } else {
+        const milisecondsInSeconds = 1000;
+        const distanceSeconds = Math.floor(distance / milisecondsInSeconds);
+        return `${distanceSeconds} seconds ago`;
+      }
+    }
+  }
+}
+
+setInterval(() => {
+  renderBlogs();
+}, 1000);
+
+// setTimeout(() => {
+//   alert('Selamat Pagi 👨🏻‍💻');
+// }, 5000);
+
+// let iconElement;
+
+// icon.forEach((data)=>{
+//   iconElement += data
+// })
+
+// let project = {
+//   tech: iconElement
+// }
